@@ -16,7 +16,7 @@ defaults
     timeout server 50000
 
 frontend http_front
-    http-request redirect scheme https code 301 unless { ssl_fc }
+    http-request redirect scheme https code 301 if { hdr(host) -i www.dodoon.tech } !{ ssl_fc }
     bind *:80
     default_backend http_back
 
